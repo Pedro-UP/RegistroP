@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase');
 
 @section('contenido')
-<h2>Editar los Articulos</h2>
+<h2>Editar Los Celulares</h2>
 
 <form action="/celulares/{{$celular->id}}" method="POST">
     @method('PUT')

@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase');
 
 @section('contenido')
-    <h2>Crear Articulos</h2>
+    <h2>Registrar Un Nuevo Celular</h2>
 
     <form action="/celulares" method="POST">
         @csrf

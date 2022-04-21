@@ -1,7 +1,7 @@
 @extends('layouts.plantillabase')
 
 @section('contenido')
-<h2>Crear Articulos</h2>
+<h2>Registre Una Laptop</h2>
 
 <form action="/articulos" method="POST">
     @csrf
