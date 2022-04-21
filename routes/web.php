@@ -21,6 +21,10 @@ Route::get('/', '\App\Http\Controllers\InicioController@index');
 
 Route::resource('articulos', '\App\Http\Controllers\ArticuloController');
 
+Route::resource('celulares', '\App\Http\Controllers\CelularControler');
+
+Route::resource('componentepcs', '\App\Http\Controllers\ComponentesController');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

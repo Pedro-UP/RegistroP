@@ -1,4 +1,4 @@
-@extends('layouts.plantillabase');
+@extends('layouts.plantillabase')
 
 @section('contenido')
 <h2>Crear Articulos</h2>

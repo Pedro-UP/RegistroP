@@ -2,11 +2,12 @@
 
 @section('contenido')
     <h1> Vista del Index </h1>
-    <a href="articulos/create" class="btn btn-primary">CREAR</a>
 
-    <table border="2" class="table table-dark table-hover mt-4">
+    <a href="celulares/create" class="btn btn-primary">CREAR</a>
+
+    <table border="2" class="table table-bordered border-dark table-hover mt-4">
         <thead>
-            <tr>
+            <tr class="bg-primary">
                 <th scope="col">ID</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Descripcion</th>
@@ -17,18 +18,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($articulos as $articulo)
-                <tr>
-                    <td>{{ $articulo->id }}</td>
-                    <td>{{ $articulo->marca }}</td>
-                    <td>{{ $articulo->descripcion }}</td>
-                    <td>{{ $articulo->cantidad }}</td>
-                    <td>{{ $articulo->precio }}</td>
+            @foreach ($celulares as $celular)
+                <tr class="table-primary">
+                    <td>{{ $celular->id }}</td>
+                    <td>{{ $celular->marca }}</td>
+                    <td>{{ $celular->descripcion }}</td>
+                    <td>{{ $celular->cantidad }}</td>
+                    <td>{{ $celular->precio }}</td>
                     <td>
-                        <a href="/articulos/{{ $articulo->id }}/edit" class="btn btn-info">Editar</a>
+                        <a href="/celulares/{{ $celular->id }}/edit" class="btn btn-info">Editar</a>
                     </td>
                     <td>
-                        <form action="{{ route('articulos.destroy', $articulo->id) }}" method="POST">
+                        <form action="{{ route('celulares.destroy', $celular->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-danger" onclick="return confirm('Deseas eliminar el articulo');"
@@ -39,4 +40,4 @@
             @endforeach
         </tbody>
     </table>
-@endsection
+    @endsection
