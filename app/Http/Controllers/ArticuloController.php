@@ -36,13 +36,17 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        $articulos = new Articulo();
-        $articulos->marca = $request->get('marca');
-        $articulos->descripcion = $request->get('descripcion');
-        $articulos->cantidad = $request->get('cantidad');
-        $articulos->precio = $request->get('precio');
+        $request->validate([
+            'marca' => 'required', 'descripcion' => 'required', 'cantidad' => 'required', 'precio' => 'required', 'imagen' => 'required|image|mimes:jpg,png,svg,ico|max:40024'
+        ]);
 
-        $articulos->save();
+        $articulos = $request->all();
+
+        if($request->hasFile('imagen')){
+            $articulos['imagen']=$request->file('imagen')->store('imagen','public');
+        }
+
+        Articulo::create($articulos);
 
         return redirect('/articulos');
 

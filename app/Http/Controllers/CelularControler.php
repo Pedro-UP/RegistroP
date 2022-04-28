@@ -36,13 +36,18 @@ class CelularControler extends Controller
      */
     public function store(Request $request)
     {
-        $celulares = new Celular();
-        $celulares->marca = $request->get('marca');
-        $celulares->descripcion = $request->get('descripcion');
-        $celulares->cantidad = $request->get('cantidad');
-        $celulares->precio = $request->get('precio');
+        $request->validate([
+            'marca' => 'required', 'descripcion' => 'required', 'cantidad' => 'required', 'precio' => 'required', 'imagen' => 'required|image|mimes:jpg,png,svg,ico|max:40024'
+        ]);
 
-        $celulares->save();
+        $celulares = $request->all();
+
+        if($request->hasFile('imagen')){
+            $celulares['imagen']=$request->file('imagen')->store('imagen','public');
+        }
+
+        Celular::create($celulares);
+
 
         return redirect('/celulares');
     }
@@ -84,6 +89,8 @@ class CelularControler extends Controller
         $celular->descripcion = $request->get('descripcion');
         $celular->cantidad = $request->get('cantidad');
         $celular->precio = $request->get('precio');
+        /* $celular->imagen = $request->get('imagen')->store('imagen','public'); */
+
 
         $celular->save();
 

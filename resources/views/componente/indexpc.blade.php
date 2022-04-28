@@ -14,22 +14,28 @@
     <table id="componentepcs" border="2" class="table table-dark table-bordered border-dark table-hover shadow-lg mt-4"
         style="width:100%">
         <thead>
-            <th scope="col">ID</th>
+            <th hidden scope="col">ID</th>
             <th scope="col">Tipo de Componente</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Precio</th>
+            <th scope="col">Imagen</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </thead>
         <tbody>
             @foreach ($componentes as $componente)
                 <tr class="table-warning">
-                    <td>{{ $componente->id }}</td>
+                    <td hidden>{{ $componente->id }}</td>
                     <td>{{ $componente->tipocomponente }}</td>
                     <td>{{ $componente->descripcion }}</td>
                     <td>{{ $componente->cantidad }}</td>
                     <td>{{ $componente->precio }}</td>
+
+                    <td>
+                        <img src="{{ asset('storage'). '/' .$componente->imagen}}" width="200" height="100">
+                    </td>
+
                     <td>
                         <a href="/componentepcs/{{ $componente->id }}/edit" class="btn btn-info">Editar</a>
                     </td>

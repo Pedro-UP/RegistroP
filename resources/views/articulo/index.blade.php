@@ -7,16 +7,17 @@
 @section('contenido')
     <h1> El Registro De Laptops </h1>
     <a href="articulos/create" class="btn btn-primary">CREAR</a>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <table id="articulos" border="2" class="table table-dark table-hover shadow-lg mt-4" style="width:100%">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th hidden scope="col">ID</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Imagen</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
@@ -24,11 +25,16 @@
         <tbody>
             @foreach ($articulos as $articulo)
                 <tr>
-                    <td>{{ $articulo->id }}</td>
+                    <td hidden>{{ $articulo->id }}</td>
                     <td>{{ $articulo->marca }}</td>
                     <td>{{ $articulo->descripcion }}</td>
                     <td>{{ $articulo->cantidad }}</td>
                     <td>{{ $articulo->precio }}</td>
+
+                    <td>
+                        <img src="{{ asset('storage') . '/' . $articulo->imagen }}" width="200" height="100">
+                    </td>
+
                     <td>
                         <a href="/articulos/{{ $articulo->id }}/edit" class="btn btn-info">Editar</a>
                     </td>
@@ -52,7 +58,10 @@
     <script>
         $(document).ready(function() {
             $('#articulos').DataTable({
-                "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "ALL"]]
+                "lengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "ALL"]
+                ]
             });
         });
     </script>

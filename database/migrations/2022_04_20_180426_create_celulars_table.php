@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('celulars', function (Blueprint $table) {
             $table->id();
-            $table->string('marca', 25);
+            $table->string('marca', 50);
             $table->string('descripcion', 255);
             $table->integer('cantidad');
             $table->decimal('precio', 8, 2);
+            $table->string('imagen');
             $table->timestamps();
         });
     }

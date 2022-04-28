@@ -14,11 +14,12 @@
     <table id="celulares" border="2" class="table table-bordered border-dark table-hover shadow-lg mt-4" style="width:100%">
         <thead>
             <tr class="bg-primary">
-                <th scope="col">ID</th>
+                <th hidden>ID</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Imagen</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
@@ -26,11 +27,16 @@
         <tbody>
             @foreach ($celulares as $celular)
                 <tr class="table-primary">
-                    <td>{{ $celular->id }}</td>
+                    <td hidden>{{ $celular->id }}</td>
                     <td>{{ $celular->marca }}</td>
                     <td>{{ $celular->descripcion }}</td>
                     <td>{{ $celular->cantidad }}</td>
                     <td>{{ $celular->precio }}</td>
+                    
+                    <td>
+                        <img src="{{ asset('storage'). '/' .$celular->imagen}}" width="200" height="100">
+                    </td>
+
                     <td>
                         <a href="/celulares/{{ $celular->id }}/edit" class="btn btn-info">Editar</a>
                     </td>

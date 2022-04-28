@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Celular extends Model
 {
     use HasFactory;
+    protected $fillable = ['marca', 'descripcion', 'cantidad', 'precio', 'imagen'];
 }

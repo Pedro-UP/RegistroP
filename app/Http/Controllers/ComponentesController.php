@@ -36,13 +36,17 @@ class ComponentesController extends Controller
      */
     public function store(Request $request)
     {
-        $componentes = new ComponentesPC();
-        $componentes->tipocomponente = $request->get('tipocomponente');
-        $componentes->descripcion = $request->get('descripcion');
-        $componentes->cantidad = $request->get('cantidad');
-        $componentes->precio = $request->get('precio');
+        $request->validate([
+            'tipocomponente' => 'required', 'descripcion' => 'required', 'cantidad' => 'required', 'precio' => 'required', 'imagen' => 'required|image|mimes:jpg,png,svg,ico|max:40024'
+        ]);
 
-        $componentes->save();
+        $componentes = $request->all();
+
+        if($request->hasFile('imagen')){
+            $componentes['imagen']=$request->file('imagen')->store('imagen','public');
+        }
+
+        ComponentesPC::create($componentes);
 
         return redirect('/componentepcs');
     }
