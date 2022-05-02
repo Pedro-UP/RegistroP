@@ -59,7 +59,8 @@ class ComponentesController extends Controller
      */
     public function show($id)
     {
-        //
+        $productoPC=ComponentesPC::where('id', $id)->first();
+            return view('detalles3', compact('productoPC'));
     }
 
     /**

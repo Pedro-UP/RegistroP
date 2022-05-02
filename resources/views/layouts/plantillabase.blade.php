@@ -20,7 +20,7 @@
 
     <header>
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;" style="width:80%">
-            <a class="nav-item navbar-brand" href="{{ route('dashboard') }}"> INICIO </a>
+            <a class="nav-item navbar-brand" href="{{ route('dashboard.index') }}"> INICIO </a>
             <a class="nav-item nav-link" href="{{ route('celulares.index') }}"> CELULARES </a>
             <a class="nav-item nav-link" href="{{ route('articulos.index') }}"> LAPTOPS </a>
             <a class="nav-item nav-link" href="{{ route('componentepcs.index') }}"> COMPONENTES PCS </a>

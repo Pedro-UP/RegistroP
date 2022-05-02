@@ -12,6 +12,8 @@ class ArticuloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $articulos = Articulo::all();
@@ -60,7 +62,8 @@ class ArticuloController extends Controller
      */
     public function show($id)
     {
-        //
+            $productoA=Articulo::where('id', $id)->first();
+            return view('detalles', compact('productoA'));
     }
 
     /**

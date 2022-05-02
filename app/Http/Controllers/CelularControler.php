@@ -60,7 +60,8 @@ class CelularControler extends Controller
      */
     public function show($id)
     {
-        //
+        $productoC=Celular::where('id', $id)->first();
+            return view('detalles2', compact('productoC'));
     }
 
     /**
@@ -88,8 +89,8 @@ class CelularControler extends Controller
         $celular->marca = $request->get('marca');
         $celular->descripcion = $request->get('descripcion');
         $celular->cantidad = $request->get('cantidad');
-        $celular->precio = $request->get('precio');
-        /* $celular->imagen = $request->get('imagen')->store('imagen','public'); */
+        // $celular->precio = $request->get('precio');
+         $celular->imagen = $request->get('imagen')->store('imagen','public');
 
 
         $celular->save();

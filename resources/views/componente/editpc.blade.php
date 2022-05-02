@@ -22,6 +22,11 @@
         <label for="" class="form-label">Precio</label>
         <input id="precio" name="precio" type="number" step="any" value="0.00" class="form-control" value="{{ $componente->precio }}">
     </div>
+
+    <div class="mb-3">
+        <input name="imagen" id="imagen" type="file" value="{{ $componente->imagen }}">
+    </div>
+
     <a href="/componentepcs" class="btn btn-secondary" >Cancelar</a>
     <button type="submit" class="btn btn-primary" >Guardar</button>
 @endsection

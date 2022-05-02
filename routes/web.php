@@ -30,8 +30,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::resource('dashboard', '\App\Http\Controllers\DashboardController');
 });
 
+Route::resource('detalles', '\App\Http\Controllers\ArticuloController');
+Route::resource('detalles2', '\App\Http\Controllers\CelularControler');
+Route::resource('detalles3', '\App\Http\Controllers\ComponentesController');
+
+//Route::resource('dashboard', '\App\Http\Controllers\DashboardController');
