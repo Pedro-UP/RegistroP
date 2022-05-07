@@ -7,6 +7,11 @@ use App\Models\ComponentesPC;
 
 class ComponentesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -106,5 +111,47 @@ class ComponentesController extends Controller
         $componente = ComponentesPC::find($id);
         $componente->delete();
         return redirect('/componentepcs');
+    }
+
+    public function cart()
+    {
+        return view('cart');
+    }
+
+    public function addToCart($id)
+    {
+        $product = ComponentesPC::find($id);
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    'descripcion' => $product->descripcion,
+                    'quantity' => 1,
+                    'precio' => $product->precio,
+                    'marca' => $product->tipocomponente,
+                    'imagen' => $product->imagen
+                ]
+            ];
+
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart');
+        }
+
+        $cart[$id] = [
+            'descripcion' => $product->descripcion,
+            'quantity' => 1,
+            'precio' => $product->precio,
+            'marca' => $product->tipocomponente,
+            'imagen' => $product->imagen
+        ];
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 }

@@ -7,6 +7,12 @@ use App\Models\Articulo;
 
 class ArticuloController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,14 +50,13 @@ class ArticuloController extends Controller
 
         $articulos = $request->all();
 
-        if($request->hasFile('imagen')){
-            $articulos['imagen']=$request->file('imagen')->store('imagen','public');
+        if ($request->hasFile('imagen')) {
+            $articulos['imagen'] = $request->file('imagen')->store('imagen', 'public');
         }
 
         Articulo::create($articulos);
 
         return redirect('/articulos');
-
     }
 
     /**
@@ -62,8 +67,8 @@ class ArticuloController extends Controller
      */
     public function show($id)
     {
-            $productoA=Articulo::where('id', $id)->first();
-            return view('detalles', compact('productoA'));
+        $productoA = Articulo::where('id', $id)->first();
+        return view('detalles', compact('productoA'));
     }
 
     /**
@@ -87,7 +92,7 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $articulo= Articulo::find($id);
+        $articulo = Articulo::find($id);
         $articulo->marca = $request->get('marca');
         $articulo->descripcion = $request->get('descripcion');
         $articulo->cantidad = $request->get('cantidad');
@@ -109,5 +114,49 @@ class ArticuloController extends Controller
         $articulo = Articulo::find($id);
         $articulo->delete();
         return redirect('/articulos');
+    }
+
+    //Carrito
+
+    public function cart()
+    {
+        return view('cart');
+    }
+
+    public function addToCart($id)
+    {
+        $product = Articulo::find($id);
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    'descripcion' => $product->descripcion,
+                    'quantity' => 1,
+                    'precio' => $product->precio,
+                    'marca' => $product->marca,
+                    'imagen' => $product->imagen
+                ]
+            ];
+
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart');
+        }
+
+        $cart[$id] = [
+            'descripcion' => $product->descripcion,
+            'quantity' => 1,
+            'precio' => $product->precio,
+            'marca' => $product->marca,
+            'imagen' => $product->imagen
+        ];
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 }

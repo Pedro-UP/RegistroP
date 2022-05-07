@@ -7,6 +7,11 @@ use App\Models\Celular;
 
 class CelularControler extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -109,5 +114,48 @@ class CelularControler extends Controller
         $celular = Celular::find($id);
         $celular->delete();
         return redirect('/celulares');
+    }
+
+    //Carrito
+    public function cart()
+    {
+        return view('cart');
+    }
+
+    public function addToCart($id)
+    {
+        $product = Celular::find($id);
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    'descripcion' => $product->descripcion,
+                    'quantity' => 1,
+                    'precio' => $product->precio,
+                    'marca' => $product->marca,
+                    'imagen' => $product->imagen
+                ]
+            ];
+
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart');
+        }
+
+        $cart[$id] = [
+            'descripcion' => $product->descripcion,
+            'quantity' => 1,
+            'precio' => $product->precio,
+            'marca' => $product->marca,
+            'imagen' => $product->imagen
+        ];
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 }

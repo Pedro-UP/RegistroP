@@ -33,8 +33,22 @@ Route::middleware([
     Route::resource('dashboard', '\App\Http\Controllers\DashboardController');
 });
 
+
 Route::resource('detalles', '\App\Http\Controllers\ArticuloController');
 Route::resource('detalles2', '\App\Http\Controllers\CelularControler');
 Route::resource('detalles3', '\App\Http\Controllers\ComponentesController');
 
 //Route::resource('dashboard', '\App\Http\Controllers\DashboardController');
+
+Route::get('cart', '\App\Http\Controllers\ArticuloController@cart');
+
+Route::get('add-to-cart1/{id}', '\App\Http\Controllers\ArticuloController@addToCart');
+
+Route::get('cart', '\App\Http\Controllers\CelularControler@cart');
+
+Route::get('add-to-cart2/{id}', '\App\Http\Controllers\CelularControler@addToCart');
+
+Route::get('cart', '\App\Http\Controllers\ComponentesController@cart');
+
+Route::get('add-to-cart3/{id}', '\App\Http\Controllers\ComponentesController@addToCart');
+
