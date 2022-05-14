@@ -19,6 +19,11 @@
                     <p>{{ $productoPC->cantidad }}</p>
                     <h4 class=" card-text">Precio del Producto:</h4>
                     <p>${{ $productoPC->precio }}</p>
+
+                    <a href="{{ url('add-to-cart3/' . $productoPC->id) }}"
+                        class="btn btn-primary btn-lg btn-block" role="button"
+                        aria-pressed="true">Agregar al Carrito</a>
+
                 </div>
             </div>
         </div>

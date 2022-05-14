@@ -158,5 +158,12 @@ class ArticuloController extends Controller
 
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
+
     }
+
+    public function delete_item($id){
+        $cart = session()->remove('cart');
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
 }

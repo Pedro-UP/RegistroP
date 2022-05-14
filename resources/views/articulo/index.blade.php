@@ -41,7 +41,6 @@
                     <td>
                         <form action="{{ route('articulos.destroy', $articulo->id) }}" method="POST">
                             @csrf
-                            @method('DELETE')
                             <button class="btn btn-outline-danger" onclick="return confirm('Deseas eliminar el articulo');"
                                 type="submit">Eliminar</button>
                         </form>

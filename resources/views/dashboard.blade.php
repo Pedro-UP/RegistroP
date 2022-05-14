@@ -2,7 +2,9 @@
         <main>
             <a href="{{ url('/cart/') }}"
                 class="btn btn-primary btn-lg btn-block" role="button"
-                aria-pressed="true">Ver el Carrito</a>
+                aria-pressed="true">Ver el Carrito(<?php
+                echo (empty (session('cart')))?0:count(session('cart'));
+                ?>)Por Lote</a>
 
             <div class="album py-5 bg-light">
                 <div class="container">

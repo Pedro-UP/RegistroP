@@ -2,7 +2,7 @@
 @section('contenido')
     <?php $valor = 0 ?>
 
-    @if(session('cart'));
+    @if(session('cart'))
 
     <table class="table">
         <thead>
@@ -27,9 +27,16 @@
                 <td>{{ $detalles['quantity'] }}</td>
                 <td>{{ $detalles['precio'] }}</td>
 
-                <td>
+                <td width="25%">
                     <img src="{{ asset('storage') . '/' . $detalles['imagen'] }}" width="200" height="100">
                 </td>
+
+                <td width="15%">
+                    <a href="{{ url('delete/' . $detalles['quantity']) }}"
+                        class="btn btn-primary btn-lg btn-block" role="button"
+                    class="btn btn-danger">Eliminar Todo el Carrito</button> </a>
+                </td>
+
             </tr>
         @endforeach
     </table>
@@ -39,3 +46,4 @@
     </div>
     @endif
 @endsection
+

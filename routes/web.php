@@ -41,14 +41,13 @@ Route::resource('detalles3', '\App\Http\Controllers\ComponentesController');
 //Route::resource('dashboard', '\App\Http\Controllers\DashboardController');
 
 Route::get('cart', '\App\Http\Controllers\ArticuloController@cart');
-
 Route::get('add-to-cart1/{id}', '\App\Http\Controllers\ArticuloController@addToCart');
+Route::get('delete/{id}', '\App\Http\Controllers\ArticuloController@delete_item');
+
 
 Route::get('cart', '\App\Http\Controllers\CelularControler@cart');
-
 Route::get('add-to-cart2/{id}', '\App\Http\Controllers\CelularControler@addToCart');
 
 Route::get('cart', '\App\Http\Controllers\ComponentesController@cart');
-
 Route::get('add-to-cart3/{id}', '\App\Http\Controllers\ComponentesController@addToCart');
 

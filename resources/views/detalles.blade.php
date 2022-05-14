@@ -20,7 +20,7 @@
                         <h4 class=" card-text">Precio del Producto:</h4>
                         <p>${{ $productoA->precio }}</p>
 
-                        <a href="{{ url('add-to-cart/' . $productoA->id) }}"
+                        <a href="{{ url('add-to-cart1/' . $productoA->id) }}"
                             class="btn btn-primary btn-lg btn-block" role="button"
                             aria-pressed="true">Agregar al Carrito</a>
 
