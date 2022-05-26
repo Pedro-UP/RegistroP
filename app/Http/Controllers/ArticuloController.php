@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Articulo;
 
+use Illuminate\Support\Facades\Storage;
+
 class ArticuloController extends Controller
 {
 
@@ -19,6 +21,7 @@ class ArticuloController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     
 
     public function index()
     {
@@ -92,11 +95,19 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if ($request->hasFile('imagen')) {
+            $articulo = Articulo::find($id);
+            Storage::delete('public/'.$articulo->imagen);
+            $articulo['imagen'] = $request->file('imagen')->store('imagen', 'public');
+        }
+
         $articulo = Articulo::find($id);
         $articulo->marca = $request->get('marca');
         $articulo->descripcion = $request->get('descripcion');
         $articulo->cantidad = $request->get('cantidad');
         $articulo->precio = $request->get('precio');
+        $articulo->imagen = $request->file('imagen');
 
         $articulo->save();
 

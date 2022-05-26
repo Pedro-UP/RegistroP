@@ -32,8 +32,8 @@
                     <td>{{ $componente->cantidad }}</td>
                     <td>{{ $componente->precio }}</td>
 
-                    <td>
-                        <img src="{{ asset('storage'). '/' .$componente->imagen}}" width="200" height="100">
+                    <td width="15%">
+                        <img width="75%" src="{{ asset('storage'). '/' .$componente->imagen}}" class="rounded mx-auto d-block">
                     </td>
 
                     <td>

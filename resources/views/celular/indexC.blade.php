@@ -8,8 +8,8 @@
     <h1> Registro De Celulares </h1>
 
     <a href="celulares/create" class="btn btn-primary">CREAR</a>
-    <br/>
-    <br/>
+    <br />
+    <br />
 
     <table id="celulares" border="2" class="table table-bordered border-dark table-hover shadow-lg mt-4" style="width:100%">
         <thead>
@@ -32,9 +32,10 @@
                     <td>{{ $celular->descripcion }}</td>
                     <td>{{ $celular->cantidad }}</td>
                     <td>{{ $celular->precio }}</td>
-                    
-                    <td>
-                        <img src="{{ asset('storage'). '/' .$celular->imagen}}" width="200" height="100">
+
+                    <td width="15%">
+                        <img width="30%" src="{{ asset('storage') . '/' . $celular->imagen }}"
+                            class="rounded mx-auto d-block">
                     </td>
 
                     <td>

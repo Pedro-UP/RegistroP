@@ -31,8 +31,9 @@
                     <td>{{ $articulo->cantidad }}</td>
                     <td>{{ $articulo->precio }}</td>
 
-                    <td>
-                        <img src="{{ asset('storage') . '/' . $articulo->imagen }}" width="200" height="100">
+                    <td width="15%">
+                        <img width="80%" src="{{ asset('storage') . '/' . $articulo->imagen }}" height="100"
+                            class="rounded mx-auto d-block">
                     </td>
 
                     <td>
@@ -41,6 +42,7 @@
                     <td>
                         <form action="{{ route('articulos.destroy', $articulo->id) }}" method="POST">
                             @csrf
+                            @method('DELETE')
                             <button class="btn btn-outline-danger" onclick="return confirm('Deseas eliminar el articulo');"
                                 type="submit">Eliminar</button>
                         </form>

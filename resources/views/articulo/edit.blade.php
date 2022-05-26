@@ -10,7 +10,8 @@
             <label for="" class="form-label">Marca</label>
             <input id="marca" name="marca" type="text" class="form-control" value="{{ $articulo->marca }}">
         </div>
-        <div class="mb-3" <label for="" class="form-label">Descripcion</label>
+        <div class="mb-3" >
+        <label for="" class="form-label">Descripcion</label>
             <input id="descripcion" name="descripcion" type="text" class="form-control"
                 value="{{ $articulo->descripcion }}">
         </div>
@@ -25,7 +26,7 @@
         </div>
 
         <div class="mb-3">
-            <input name="imagen" id="imagen" type="file" value="{{ $articulo->imagen }}"
+            <input name="imagen" id="imagen" type="file" value="{{ $articulo->imagen }}">
         </div>
 
         <a href="/articulos" class="btn btn-secondary">Cancelar</a>

@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminController;
+//use App\Http\Controllers\ArticuloController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', '\App\Http\Controllers\InicioController@index');
 
-Route::resource('articulos', '\App\Http\Controllers\ArticuloController');
+Route::resource('articulos', '\App\Http\Controllers\ArticuloController')->middleware('auth.admin');
 
-Route::resource('celulares', '\App\Http\Controllers\CelularControler');
+Route::resource('celulares', '\App\Http\Controllers\CelularControler')->middleware('auth.admin');
 
-Route::resource('componentepcs', '\App\Http\Controllers\ComponentesController');
+Route::resource('componentepcs', '\App\Http\Controllers\ComponentesController')->middleware('auth.admin');
 
 Route::middleware([
     'auth:sanctum',
@@ -51,3 +55,13 @@ Route::get('add-to-cart2/{id}', '\App\Http\Controllers\CelularControler@addToCar
 Route::get('cart', '\App\Http\Controllers\ComponentesController@cart');
 Route::get('add-to-cart3/{id}', '\App\Http\Controllers\ComponentesController@addToCart');
 
+
+Route::get('ventas', '\App\Http\Controllers\VentasController@terminarVenta');
+
+Route::get('/admin', [AdminController::class, 'index'])
+->middleware('auth.admin')
+->name('admin.index');
+
+// Route::get('/articulos', [ArticuloController::class, 'index'])
+// ->middleware('auth.admin')
+// ->name('articulos.index');

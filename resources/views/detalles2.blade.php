@@ -1,13 +1,12 @@
 @extends('layouts.plantillabase')
 @section('contenido')
-<div class="container">
-    <div class="col-md-12">
-        <div class="card">
+<div class="container" >
+        <div class="card" >
             <div class="card-header">Detalles Del Articulo</div>
-            <div class="card-body">
-                <div class="row justify-content-center ">
-                    <td>
-                        <img src="{{ asset('storage') . '/' . $productoC->imagen }}" width="500" height="100%">
+            <div class="card-body" >
+                <div height="200" width="500" >
+                    <td >
+                        <img class="rounded mx-auto d-block" src="{{ asset('storage') . '/' . $productoC->imagen }}"  width="50%"  >
                     </td>
                 </div>
                 <div class="col-md-4 ">
@@ -27,6 +26,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection
